@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Config Service
+  version: '2.0'
+  description: Project and system config microservice
+  contact: {}
+servers:
+  - url: ''
+paths:
+  /config/v1/datasources:
+    get:
+      tags:
+        - config/v1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Datasource'
+          description: Success
+        '404':
+          description: Not Found
+      operationId: get_datasources
+      summary: GET endpoint
+      description: return list of sources
+components:
+  schemas:
+    Datasource:
+      description: ''
+      type: object
+      properties:
+        type:
+          type: string
+          minLength: 1
+        properties:
+          type: object
+          properties:
+            _id:
+              type: object
+              properties:
+                type:
+                  type: string
+                  minLength: 1
+
